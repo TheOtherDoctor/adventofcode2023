@@ -6,7 +6,20 @@ while(<inp>){
   my $n=0;
   chomp();
   print "$_ -> ";
-  # replace all number words by digits:
+  # replace all number words by digits;
+  # 0. there are only few special overlap cases:
+  # searching digit from left: ( eightwo=>82, eighthree=>83, sevenine=>79, nineight=>98, twone=>2 );
+  # searching digit from right: ( twone=>1, eightwo=>2, eighthree=>3, sevenine=>9, nineight=>8 );
+  # approach: clean these cases with minimum effort...
+  # 1. prepare the ugly interlink cases:
+  s/eight/eeightt/;
+  s/one/oonee/;
+  s/two/ttwoo/;
+  s/nine/nninee/;
+  s/seven/sevenn/;
+  s/three/tthree/;
+  # end duplication cannot mess anything up, as we only duplicate letters 
+  # in a place where they were already, so no new valid words can appear. ;-)
   my $c=1;
   foreach my $i (@nw){
     s/$i/$c/gi;
