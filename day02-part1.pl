@@ -4,7 +4,7 @@
 # Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
 
 my %possible=( red => 12, green=>13, blue=>14 );
-open(inp,"day02-demo") or die;
+open(inp,"day02-input") or die;
 my $sum=0;
 # numberwords:
 my @nw=qw( one two three four five six seven eight nine );
