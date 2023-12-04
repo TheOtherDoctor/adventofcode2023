@@ -10,12 +10,17 @@ while(<inp>){
   print "$_ -> ";
   # replace all number words by digits;
   # 1. fix the few ugly interlink cases with minimum effort:
-  s/eight/eeightt/;
-  s/one/oonee/;
-  s/two/ttwoo/;
-  s/nine/nninee/;
-  s/seven/sevenn/;
-  s/three/tthree/;
+  #    it is enough to fix at one end, but possible multiple 
+  # times per line, like this evil: "one8oneight"
+  s/one/onee/g;
+  s/two/twoo/g;
+  s/three/threee/g;
+  # four
+  s/five/fivee/g;
+  # six
+  s/seven/sevenn/g;
+  s/eight/eightt/g;
+  s/nine/ninee/g;
   # end duplication cannot mess anything up, as we only duplicate letters 
   # in a place where they were already, so no new valid words can appear. ;-)
   my $c=1;
@@ -29,9 +34,9 @@ while(<inp>){
   # first digit (might be the same one), take *10:
   if($_=~m/^[^\d]*(\d)/){$n=$n+$1*10;}
   # number done.
-  print "$n.\n";
   $sum=$sum+$n;
+  print "$n.\n"."now sum=$sum.\n";
   }
 close(inp);
-print "---> sum is $sum\n";
+print "---> final sum is $sum\n";
 exit(0);
